@@ -1,0 +1,78 @@
+NOTE: Example
+25 // Number of times program is run (must be positive int) i.e number of  times weather change is triggered
+Baloon B1 2 3 20
+Baloon B2 1 8 66
+JetPlane J1 23 44 32
+Helicopter H1 654 33 20
+Helicopter H2 22 33 44
+Helicopter H3 98 68 99
+Baloon B3 102 22 34
+JetPlane J2 11 99 768
+Helicopter H4 223 23 54
+
+
+NOTE: Program Behaviour
+Your program will take one and only one argument from the command line. This argument represents the name of a text
+file that will contain the scenario that needs to be simulated. You can find an example file provided with the subject.
+Executing the program will generate a file simulation.txt that describes the outcome of the simulation.
+
+NOTE: Format
+[TYPE]   [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]
+Balloon    B1       2           3         20
+
+NOTE: Weather Generation
+Four types of weather:
+1: RAIN
+2: FOG
+3: SUN
+4: SNOW
+
+Each 3 dimensional point has its own weather
+
+NOTE: Aircraft
+JetPlane:
+◦ SUN - Latitude increases with 10, Height increases with 2
+◦ RAIN - Latitude increases with 5
+◦ FOG - Latitude increases with 1
+◦ SNOW - Height decreases with 7
+
+Helicopter:
+◦ SUN - Longitude increases with 10, Height increases with 2
+◦ RAIN - Longitude increases with 5
+◦ FOG - Longitude increases with 1
+◦ SNOW - Height decreases with 12
+
+Baloon:
+◦ SUN - Longitude increases with 2, Height increases with 4
+◦ RAIN - Height decreases with 5
+◦ FOG - Height decreases with 3
+◦ SNOW - Height decreases with 15
+
+NOTE: Simulation
+• Coordinates are positive numbers.
+• The height is in the 0-100 range.
+• If an aircraft needs to pass the upper limit height it remains at 100.
+• Each time an aircraft is created, it receives a unique ID. There can’t be 2 aircrafts with the same ID.
+• If an aircraft reaches height 0 or needs to go below it, the aircraft lands, unregisters from the weather tower and logs its current coordinates.
+• When a weather change occurs, each aircraft type needs to log a message, as seen in the example. The message format is: TYPE#NAME(UNIQUE_ID): SPECIFIC_MESSAGE. A funny message will be appreciated during the correction.
+• Each time an aircraft registers or unregisters to/from the weather tower, a message will be logged.
+
+NOTE: Validation
+The input file needs to be validated. Any abnormal behaviour due to invalid input data is not acceptable.
+If the input file data is not correct the program stops execution.
+Any error messages will be printed to the standard output.
+
+NOTE: Bonus
+• You create your own custom exceptions for treating abnormal behaviour.
+• Your program can read the input file contents when they are encrypted in MD5.
+
+Note: UML
++ public
+# protected
+- private
+~ package/default
+
+->  inheritance (white arrow)
+-   association (straight line)
+-<> aggregation (white double arrow)
+-<> composition (black double arrow)
