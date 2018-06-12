@@ -5,21 +5,21 @@ import java.util.ArrayList;
 
 public class Main {
 	public static void main(String[] args) {
-		int iterations = 0;
+		int iterations;
+		int index;
 		File file = new File(args[0]);
 		ArrayList<Aircraft> list;
 
-		if ((iterations = isFileValid(file)) != 0) {
-			System.out.println("VALID FILE");
-			System.out.println(iterations);
-		} else
+		if ((iterations = isFileValid(file)) == -1) {
 			System.exit(1);
-
+		}
 		list = createAllAircraft(file);
-		System.out.println(list.get(0).name);
-		System.out.println(list.get(0).coordinates.getHeight());
-		System.out.println(list.get(0).coordinates.getLatitude());
-		System.out.println(list.get(0).coordinates.getHeight());
+		index = list.size();
+		for (int i = 0; i < iterations; ++i) {
+			for (int j = 0; j < index; ++j) {
+				System.out.println(list.get(j).name);
+			}
+		}
 	}
 
 	private static int isFirstLineValid(String[] line, int lineNumber) {
@@ -30,7 +30,7 @@ public class Main {
 			System.out.println("ERROR: First line of file needs to be an integer.");
 			System.out.println("FORMAT: 25 (Example)");
 			System.out.print("See line [" + lineNumber + "]");
-			return 0;
+			return -1;
 		}
 
 		//if the integer entered cannot be stored in an int, it is considered invalid
@@ -40,7 +40,7 @@ public class Main {
 			System.out.println("ERROR: Integer value is invalid.");
 			System.out.println("FORMAT: -2147483648 < value < 2147483647.");
 			System.out.println("See line [" + lineNumber + "]. ");
-			return 0;
+			return -1;
 		}
 		return iterations;
 	}
@@ -53,7 +53,7 @@ public class Main {
 			System.out.println("ERROR: Incorrect format.");
 			System.out.println("FORMAT: [TYPE] [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]");
 			System.out.println("See Line [" + lineNumber + "].");
-			return 0;
+			return -1;
 		}
 
 		//checking correct type
@@ -63,7 +63,7 @@ public class Main {
 			System.out.println("ERROR: [" + line[0] + "]" + " is not a valid type of aircraft. ");
 			System.out.println("TYPES: Balloon, JetPlane or Helicopter.");
 			System.out.println("See line [" + lineNumber + "]. ");
-			return 0;
+			return -1;
 		}
 
 		//if the integer entered cannot be stored in an int, it is considered invalid
@@ -75,7 +75,7 @@ public class Main {
 			System.out.println("ERROR: Integer value is invalid.");
 			System.out.println("FORMAT: -2147483648 < value < 2147483647.");
 			System.out.println("See line [" + lineNumber + "]. ");
-			return 0;
+			return -1;
 		}
 		return 1;
 	}
@@ -88,7 +88,7 @@ public class Main {
 		//checking for empty file
 		if (file.length() == 0) {
 			System.out.println("ERROR: Empty file.");
-			return 0;
+			return -1;
 		}
 
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
@@ -99,9 +99,9 @@ public class Main {
 			if ((line = br.readLine()) != null) {
 				string = line.split(" ");
 				iterations = isFirstLineValid(string, lineNumber);
-				if (iterations == 0) {
+				if (!(iterations > 0)) {
 					System.out.println("Valid file but there are no iterations. Exiting.");
-					return 0;
+					return -1;
 				}
 				lineNumber++;
 			}
@@ -110,14 +110,14 @@ public class Main {
 			while ((line = br.readLine()) != null) {
 				string = line.split(" ");
 				isValid = isLineValid(string, lineNumber);
-				if (isValid == 0)
-					return 0;
+				if (isValid == -1)
+					return -1;
 				lineNumber++;
 			}
 
 		} catch (IOException e) {
 			System.out.println("ERROR: IOException in function isFileValid() in class Main.java]\n");
-			return 0;
+			return -1;
 		}
 
 		//if correct integer was entered on first line, but no following lines were entered
@@ -125,7 +125,7 @@ public class Main {
 			System.out.println("ERROR: No aircraft entered.");
 			System.out.println("FORMAT: [TYPE] [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]");
 			System.out.println("See line [" + lineNumber + "]. ");
-			return 0;
+			return -1;
 		}
 		return iterations;
 	}
