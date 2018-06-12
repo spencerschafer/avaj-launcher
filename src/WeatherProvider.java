@@ -7,9 +7,11 @@ public class WeatherProvider {
 	}
 
 	public WeatherProvider getProvider() {
+		return (this.weatherProvider);
+
 	}
 
 	public String getCurrentWeather(Coordinates coordinates) {
-
+		return ("");
 	}
 }

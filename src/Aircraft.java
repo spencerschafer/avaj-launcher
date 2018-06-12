@@ -4,9 +4,14 @@ public class Aircraft {
 	protected String name;
 	protected Coordinates coordinates;
 
-	protected Aircraft(String name, Coordinates coordinates) {
+	Aircraft(String name, Coordinates coordinates) {
 		this.name = name;
 		this.coordinates = coordinates;
+	}
+
+	Aircraft() {
+		this.name = "default";
+		this.coordinates = new Coordinates(0, 0, 0);
 	}
 
 	private long nextId() {

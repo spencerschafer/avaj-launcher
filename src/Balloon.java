@@ -1,7 +1,7 @@
-public class Baloon extends Aircraft implements Flyable {
+public class Balloon extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
 
-	Baloon(String name, Coordinates coordinates) {
+	Balloon(String name, Coordinates coordinates) {
 		this.name = name;
 		this.coordinates = coordinates;
 	}
