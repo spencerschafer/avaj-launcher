@@ -17,4 +17,8 @@ public class Aircraft {
 	private long nextId() {
 		return 0;
 	}
+
+	protected String getClassType() {
+		return Aircraft.class.getSimpleName();
+	}
 }

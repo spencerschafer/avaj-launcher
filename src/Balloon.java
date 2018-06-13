@@ -15,4 +15,8 @@ public class Balloon extends Aircraft implements Flyable {
 	public void registerTower(WeatherTower WeatherTower) {
 
 	}
+
+	protected String getClassType() {
+		return Balloon.class.getSimpleName();
+	}
 }

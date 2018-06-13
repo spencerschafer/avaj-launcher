@@ -1,12 +1,10 @@
-import com.sun.org.apache.bcel.internal.classfile.LineNumber;
-
 import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
 	public static void main(String[] args) {
 		int iterations;
-		int index;
+		int totalAircraft;
 		File file = new File(args[0]);
 		ArrayList<Aircraft> list;
 
@@ -14,10 +12,11 @@ public class Main {
 			System.exit(1);
 		}
 		list = createAllAircraft(file);
-		index = list.size();
-		for (int i = 0; i < iterations; ++i) {
-			for (int j = 0; j < index; ++j) {
-				System.out.println(list.get(j).name);
+		totalAircraft = list.size();
+		for (int counter = 0; counter < iterations; ++counter) {
+			for (int aircraft = 0; aircraft < totalAircraft; ++aircraft) {
+				System.out.println(list.get(aircraft).name);
+				System.out.println(list.get(aircraft).getClassType());
 			}
 		}
 	}
@@ -33,7 +32,7 @@ public class Main {
 			return -1;
 		}
 
-		//if the integer entered cannot be stored in an int, it is considered invalid
+		//if the integer entered cannot be stored in an int it's considered invalid
 		try {
 			iterations = Integer.parseInt(line[0]);
 		} catch (NumberFormatException e) {
@@ -66,7 +65,7 @@ public class Main {
 			return -1;
 		}
 
-		//if the integer entered cannot be stored in an int, it is considered invalid
+		//if the integer entered cannot be stored in an int it's considered invalid
 		try {
 			Integer.parseInt(line[2]);
 			Integer.parseInt(line[3]);
@@ -167,7 +166,6 @@ public class Main {
 				string = line.split(" ");
 				list.add(createAircraft(string));
 			}
-
 		} catch (IOException e) {
 			System.out.println("ERROR: IOException in function isFileValid() in class Main.java]\n");
 			System.exit(2);
