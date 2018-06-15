@@ -1,12 +1,12 @@
 public class WeatherProvider {
-	private WeatherProvider weatherProvider;
-	private String weather[];
+	private static WeatherProvider weatherProvider;
+	private static String weather[];
 
 	private WeatherProvider() {
 
 	}
 
-	public WeatherProvider getProvider() {
+	public static WeatherProvider getProvider() {
 		return (this.weatherProvider);
 
 	}

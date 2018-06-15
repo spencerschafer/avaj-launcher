@@ -6,7 +6,7 @@ public class Main {
 		int iterations;
 		int totalAircraft;
 		File file = new File(args[0]);
-		ArrayList<Aircraft> list;
+		ArrayList<Flyable> list;
 
 		if ((iterations = isFileValid(file)) == -1) {
 			System.exit(1);
@@ -15,9 +15,9 @@ public class Main {
 		totalAircraft = list.size();
 		for (int counter = 0; counter < iterations; ++counter) {
 			for (int aircraft = 0; aircraft < totalAircraft; ++aircraft) {
-				System.out.println(list.get(aircraft).name);
-				System.out.println(list.get(aircraft).getClassType());
+				System.out.println(list.get(aircraft).getClass().getSimpleName());
 			}
+			System.out.println("\n-\n");
 		}
 	}
 
@@ -128,32 +128,19 @@ public class Main {
 		}
 		return iterations;
 	}
-
-	private static Aircraft createAircraft(String[] line) {
-		Aircraft aircraft = null;
+	private static Flyable createAircraft(String[] line) {
 		String type = line[0].toLowerCase();
 		String name = line[1];
 		int longitude = Integer.parseInt(line[2]);
 		int latitude = Integer.parseInt(line[3]);
 		int height = Integer.parseInt(line[4]);
-		Coordinates coordinates = new Coordinates(longitude, latitude, height);
 
-		switch (type) {
-			case "balloon":
-				aircraft = new Balloon(name, coordinates);
-				break;
-			case "jetplane":
-				aircraft = new JetPlane(name, coordinates);
-				break;
-			case "helicopter":
-				aircraft = new Helicopter(name, coordinates);
-				break;
-		}
-		return aircraft;
+		AircraftFactory aircraftFactory = new AircraftFactory();
+		return (aircraftFactory.newAircraft(type, name, longitude, latitude, height));
 	}
 
-	private static ArrayList<Aircraft> createAllAircraft(File file) {
-		ArrayList<Aircraft> list = new ArrayList<>();
+	private static ArrayList<Flyable> createAllAircraft(File file) {
+		ArrayList<Flyable> list = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
 			String line;
 			String[] string;

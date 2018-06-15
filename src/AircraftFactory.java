@@ -1,17 +1,21 @@
 public class AircraftFactory {
-	public Flyable newAircraft(String type, String name, int longitude, int latitude, int height) {
-		Flyable temp = new Flyable() {
-			@Override
-			public void updateConditions() {
+	public static Flyable newAircraft(String type, String name, int longitude, int latitude, int height) {
+		Flyable aircraft = null;
+		Coordinates coordinates = new Coordinates(longitude, latitude, height);
 
-			}
-
-			@Override
-			public void registerTower(WeatherTower WeatherTower) {
-
-			}
-		};
-
-		return (temp);
+		switch (type) {
+			case "balloon":
+				aircraft = new Balloon(name, coordinates);
+				break;
+			case "jetplane":
+				aircraft = new JetPlane(name, coordinates);
+				break;
+			case "helicopter":
+				aircraft = new Helicopter(name, coordinates);
+				break;
+			default:
+				System.out.printf("");
+		}
+		return aircraft;
 	}
 }
