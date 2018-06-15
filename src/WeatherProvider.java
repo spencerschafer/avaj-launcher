@@ -6,7 +6,8 @@ public class WeatherProvider {
 
 	}
 
-	public static WeatherProvider getProvider() {
+	//TODO: make static
+	public  WeatherProvider getProvider() {
 		return (this.weatherProvider);
 
 	}

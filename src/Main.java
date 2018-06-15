@@ -1,21 +1,29 @@
 import java.io.*;
 import java.util.ArrayList;
 
+
 public class Main {
 	public static void main(String[] args) {
+
 		int iterations;
 		int totalAircraft;
 		File file = new File(args[0]);
 		ArrayList<Flyable> list;
+		WeatherTower weatherTower = new WeatherTower();
 
 		if ((iterations = isFileValid(file)) == -1) {
 			System.exit(1);
+			//no error message is needed as it is printed by isFileValid
 		}
 		list = createAllAircraft(file);
+		for (Flyable aircraft : list) {
+			aircraft.registerTower(weatherTower);
+		}
 		totalAircraft = list.size();
 		for (int counter = 0; counter < iterations; ++counter) {
 			for (int aircraft = 0; aircraft < totalAircraft; ++aircraft) {
 				System.out.println(list.get(aircraft).getClass().getSimpleName());
+				list.get(aircraft).updateConditions();
 			}
 			System.out.println("\n-\n");
 		}
@@ -148,7 +156,7 @@ public class Main {
 			//skipping first line
 			br.readLine();
 
-			//iterating through subsequent file lines
+			//iterating through subsequent file lines and create each aircraft
 			while ((line = br.readLine()) != null) {
 				string = line.split(" ");
 				list.add(createAircraft(string));
