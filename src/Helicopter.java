@@ -8,14 +8,18 @@ public class Helicopter extends Aircraft implements Flyable {
 
 	@Override
 	public void updateConditions() {
+		/*if (this.coordinates.getHeight() <= 0) {
+			weatherTower.unregister(this);
+			System.out.println("TOWER: Balloon " + this.name + " (#" + this.id + ") registered to weather tower.");
+		}*/
 		System.out.println("Helicopter conditions updated");
 	}
 
 	@Override
 	public void registerTower(WeatherTower WeatherTower) {
-		//this.weatherTower = WeatherTower;
-		//weatherTower.register(this);
-		System.out.println("TOWER: Helicopter " + this.name + " registered to weather tower.");
+		this.weatherTower = WeatherTower;
+		weatherTower.register(this);
+		System.out.println("TOWER: Helicopter " + this.name + " (#" + this.id +  ") registered to weather tower.");
 	}
 
 	protected String getClassType() {

@@ -11,13 +11,13 @@ public class Main {
 		ArrayList<Flyable> listOfAircraft;
 		WeatherTower weatherTower = new WeatherTower();
 
-		//NOTE: checking for valid file
+		//checking for valid file
 		if ((iterations = isFileValid(file)) == -1) {
 			System.exit(1);
 			//no error message is needed as it is printed by isFileValid
 		}
 
-		//NOTE: adding aircraft to array
+		//adding aircraft to array
 		listOfAircraft = createAllAircraft(file);
 
 		//NOTE: register each aircraft to tower
@@ -25,7 +25,8 @@ public class Main {
 			aircraft.registerTower(weatherTower);
 		}
 
-		//NOTE: iterating through each aircraft updating the conditions on each iteration
+
+	/*	//NOTE: iterating through each aircraft updating the conditions on each iteration
 		totalAircraft = listOfAircraft.size();
 		System.out.println("\n-\n");
 		for (int counter = 0; counter < iterations; ++counter) {
@@ -33,12 +34,16 @@ public class Main {
 				listOfAircraft.get(aircraft).updateConditions();
 			}
 			System.out.println("\n-\n");
-		}
+		}*/
+
+		weatherTower.printArray();
 
 		//NOTE: deregister each aircraft from tower
 		for (Flyable aircraft : listOfAircraft) {
 			weatherTower.unregister(aircraft);
 		}
+
+		weatherTower.printArray();
 	}
 
 	private static int isFirstLineValid(String[] line, int lineNumber) {

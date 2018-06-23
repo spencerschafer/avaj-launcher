@@ -1,23 +1,28 @@
 import java.util.ArrayList;
 
 public class Tower {
-	private ArrayList<Flyable> observers;
+	private ArrayList<Flyable> observers = new ArrayList<>();
 
 	protected void conditionsChanged() {
 		System.out.println("Conditions have changed");
 	}
 
 	public void register(Flyable flyable) {
-		try {
-			this.observers.add(flyable);
-			System.out.println("TOWER: Registered " + flyable + " to the tower.");
-		} catch (Exception e) {
-			System.out.println("TOWER: Failed to register aircraft of type " + Flyable.class.getName() + ".");
-		}
+			observers.add(flyable);
 	}
 
 	public void unregister(Flyable flyable) {
-	    //observers.remove(flyable);
-		System.out.println("TOWER: Unregistered " + flyable + " from the tower");
+	    observers.remove(flyable);
+	}
+
+	//TODO: REMOVE THIS FUNCTION - tests if aircraft were registered
+	public void printArray() {
+		if (observers.size() == 0) {
+			System.out.println("\nNO AIRCRAFT REGISTERED");
+		}
+		System.out.println();
+		for (Flyable item : observers) {
+			System.out.println("REGISTERED: " + item);
+		}
 	}
 }
