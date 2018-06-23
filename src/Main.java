@@ -8,24 +8,36 @@ public class Main {
 		int iterations;
 		int totalAircraft;
 		File file = new File(args[0]);
-		ArrayList<Flyable> list;
+		ArrayList<Flyable> listOfAircraft;
 		WeatherTower weatherTower = new WeatherTower();
 
+		//NOTE: checking for valid file
 		if ((iterations = isFileValid(file)) == -1) {
 			System.exit(1);
 			//no error message is needed as it is printed by isFileValid
 		}
-		list = createAllAircraft(file);
-		for (Flyable aircraft : list) {
+
+		//NOTE: adding aircraft to array
+		listOfAircraft = createAllAircraft(file);
+
+		//NOTE: register each aircraft to tower
+		for (Flyable aircraft : listOfAircraft) {
 			aircraft.registerTower(weatherTower);
 		}
-		totalAircraft = list.size();
+
+		//NOTE: iterating through each aircraft updating the conditions on each iteration
+		totalAircraft = listOfAircraft.size();
+		System.out.println("\n-\n");
 		for (int counter = 0; counter < iterations; ++counter) {
 			for (int aircraft = 0; aircraft < totalAircraft; ++aircraft) {
-				System.out.println(list.get(aircraft).getClass().getSimpleName());
-				list.get(aircraft).updateConditions();
+				listOfAircraft.get(aircraft).updateConditions();
 			}
 			System.out.println("\n-\n");
+		}
+
+		//NOTE: deregister each aircraft from tower
+		for (Flyable aircraft : listOfAircraft) {
+			weatherTower.unregister(aircraft);
 		}
 	}
 
@@ -148,7 +160,7 @@ public class Main {
 	}
 
 	private static ArrayList<Flyable> createAllAircraft(File file) {
-		ArrayList<Flyable> list = new ArrayList<>();
+		ArrayList<Flyable> listOfAircraft = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
 			String line;
 			String[] string;
@@ -159,12 +171,12 @@ public class Main {
 			//iterating through subsequent file lines and create each aircraft
 			while ((line = br.readLine()) != null) {
 				string = line.split(" ");
-				list.add(createAircraft(string));
+				listOfAircraft.add(createAircraft(string));
 			}
 		} catch (IOException e) {
 			System.out.println("ERROR: IOException in function isFileValid() in class Main.java]\n");
 			System.exit(2);
 		}
-		return list;
+		return listOfAircraft;
 	}
 }

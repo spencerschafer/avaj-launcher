@@ -6,10 +6,8 @@ public class WeatherProvider {
 
 	}
 
-	//TODO: make static
-	public  WeatherProvider getProvider() {
-		return (this.weatherProvider);
-
+	public static WeatherProvider getProvider() {
+		return (weatherProvider);
 	}
 
 	public String getCurrentWeather(Coordinates coordinates) {

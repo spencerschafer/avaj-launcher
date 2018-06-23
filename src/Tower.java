@@ -8,12 +8,16 @@ public class Tower {
 	}
 
 	public void register(Flyable flyable) {
-	    observers.add(flyable);
-		System.out.printf("TOWER: Registered " + flyable + " to the tower");
+		try {
+			this.observers.add(flyable);
+			System.out.println("TOWER: Registered " + flyable + " to the tower.");
+		} catch (Exception e) {
+			System.out.println("TOWER: Failed to register aircraft of type " + Flyable.class.getName() + ".");
+		}
 	}
 
 	public void unregister(Flyable flyable) {
-	    observers.remove(flyable);
-		System.out.printf("TOWER: Unregistered " + flyable + " from the tower");
+	    //observers.remove(flyable);
+		System.out.println("TOWER: Unregistered " + flyable + " from the tower");
 	}
 }

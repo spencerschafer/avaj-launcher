@@ -8,17 +8,23 @@ public class Helicopter extends Aircraft implements Flyable {
 
 	@Override
 	public void updateConditions() {
-		System.out.println("Balloon conditions updated");
+		System.out.println("Helicopter conditions updated");
 	}
 
 	@Override
 	public void registerTower(WeatherTower WeatherTower) {
-		this.weatherTower = WeatherTower;
-		weatherTower.register(this);
-		System.out.printf("Registered with weather tower.");
+		//this.weatherTower = WeatherTower;
+		//weatherTower.register(this);
+		System.out.println("TOWER: Helicopter " + this.name + " registered to weather tower.");
 	}
 
 	protected String getClassType() {
 		return Helicopter.class.getSimpleName();
 	}
 }
+
+/*
+◦ SUN - Longitude increases with 10, Height increases with 2 ◦ RAIN - Longitude increases with 5
+◦ FOG - Longitude increases with 1
+◦ SNOW - Height decreases with 12
+ */

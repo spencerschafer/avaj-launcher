@@ -13,12 +13,18 @@ public class Balloon extends Aircraft implements Flyable {
 
 	@Override
 	public void registerTower(WeatherTower WeatherTower) {
-		this.weatherTower = WeatherTower;
-		weatherTower.register(this);
-		System.out.printf("Registered with weather tower.");
+		//weatherTower = WeatherTower;
+		//weatherTower.register(this);
+		System.out.println("TOWER: Balloon " + this.name + " registered to weather tower.");
 	}
 
 	protected String getClassType() {
 		return Balloon.class.getSimpleName();
 	}
 }
+
+/*
+◦ SUN - Longitude increases with 2, Height increases with 4 ◦ RAIN - Height decreases with 5
+◦ FOG - Height decreases with 3
+◦ SNOW - Height decreases with 15
+ */
