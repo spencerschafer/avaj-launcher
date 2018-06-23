@@ -6,6 +6,7 @@ public class Helicopter extends Aircraft implements Flyable {
 		this.coordinates = coordinates;
 	}
 
+	//TODO
 	@Override
 	public void updateConditions() {
 		/*if (this.coordinates.getHeight() <= 0) {
@@ -20,10 +21,6 @@ public class Helicopter extends Aircraft implements Flyable {
 		this.weatherTower = WeatherTower;
 		weatherTower.register(this);
 		System.out.println("TOWER: Helicopter " + this.name + " (#" + this.id +  ") registered to weather tower.");
-	}
-
-	protected String getClassType() {
-		return Helicopter.class.getSimpleName();
 	}
 }
 

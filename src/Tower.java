@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Tower {
 	private ArrayList<Flyable> observers = new ArrayList<>();
 
+	//TODO
 	protected void conditionsChanged() {
 		System.out.println("Conditions have changed");
 	}
@@ -15,7 +16,7 @@ public class Tower {
 	    observers.remove(flyable);
 	}
 
-	//TODO: REMOVE THIS FUNCTION - tests if aircraft were registered
+	//REMOVE THIS FUNCTION - tests if aircraft were registered
 	public void printArray() {
 		if (observers.size() == 0) {
 			System.out.println("\nNO AIRCRAFT REGISTERED");

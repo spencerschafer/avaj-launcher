@@ -6,6 +6,7 @@ public class JetPlane extends Aircraft implements Flyable {
 		this.coordinates = coordinates;
 	}
 
+	//TODO
 	@Override
 	public void updateConditions() {
 		/*if (this.coordinates.getHeight() <= 0) {
@@ -22,10 +23,6 @@ public class JetPlane extends Aircraft implements Flyable {
 		weatherTower.register(this);
 		System.out.println("TOWER: JetPlane " + this.name + " (#" + this.id + ") registered to weather tower.");
 
-	}
-
-	protected String getClassType() {
-		return JetPlane.class.getSimpleName();
 	}
 }
 

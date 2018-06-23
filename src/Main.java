@@ -36,14 +36,14 @@ public class Main {
 			System.out.println("\n-\n");
 		}*/
 
-		weatherTower.printArray();
+		/*weatherTower.printArray();
 
 		//NOTE: deregister each aircraft from tower
 		for (Flyable aircraft : listOfAircraft) {
 			weatherTower.unregister(aircraft);
 		}
 
-		weatherTower.printArray();
+		weatherTower.printArray();*/
 	}
 
 	private static int isFirstLineValid(String[] line, int lineNumber) {

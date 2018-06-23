@@ -22,8 +22,4 @@ public class Aircraft {
         id = idCounter;
         return this.id;
     }
-
-    protected String getClassType() {
-        return Aircraft.class.getSimpleName();
-    }
 }
