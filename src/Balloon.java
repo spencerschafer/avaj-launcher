@@ -31,9 +31,13 @@ public class Balloon extends Aircraft implements Flyable {
                 break;
         }
 
-        if (this.coordinates.getHeight() <= 0) {
+        if (this.coordinates.checkHeight() == -1) {
             weatherTower.unregister(this);
             System.out.println("TOWER: Balloon " + this.name + " (#" + this.id + ") deregistered from weather tower.");
+        }
+        else if (this.coordinates.checkHeight() == 1) {
+            this.coordinates.setUpperLimit();
+            System.out.println("Cannot go higher than 100, limiting height.");
         }
     }
 
@@ -44,6 +48,7 @@ public class Balloon extends Aircraft implements Flyable {
         weatherTower.register(this);
         System.out.println("TOWER: Balloon " + this.name + " (#" + this.id + ") registered to weather tower.");
     }
+
 }
 
 /*

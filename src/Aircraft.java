@@ -22,4 +22,10 @@ public class Aircraft {
         id = idCounter;
         return this.id;
     }
+
+    public void printCoordinates() {
+        System.out.printf("\n(" + this.coordinates.getLongitude() + ")");
+        System.out.printf("(" + this.coordinates.getLatitude() + ")");
+        System.out.printf("(" + this.coordinates.getHeight() + ")\n");
+    }
 }

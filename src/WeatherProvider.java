@@ -1,6 +1,6 @@
 public class WeatherProvider {
 	private static WeatherProvider weatherProvider = new WeatherProvider();
-	private static String weather[]; // array holding weather conditions
+	private static String weather[] = {"SUN", "RAIN", "FOG", "SNOW"};
 
 	//TODO
 	private WeatherProvider() {
@@ -16,7 +16,8 @@ public class WeatherProvider {
 
 	//TODO
 	public String getCurrentWeather(Coordinates coordinates) {
+		int index = coordinates.getLongitude() + coordinates.getLatitude() + coordinates.getHeight();
 		//randomise value to return integer between 1 and 4 to select weather condition from array
-		return ("SUN");
+		return (weather[index % 4]);
 	}
 }

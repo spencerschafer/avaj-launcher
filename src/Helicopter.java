@@ -26,10 +26,14 @@ public class Helicopter extends Aircraft implements Flyable {
                 coordinates.changeCoordinates(0, 0, -12);
                 break;
         }
-        if (this.coordinates.getHeight() <= 0) {
-			weatherTower.unregister(this);
-			System.out.println("TOWER: Balloon " + this.name + " (#" + this.id + ") deregistered from weather tower.");
-		}
+        if (this.coordinates.checkHeight() == -1) {
+            weatherTower.unregister(this);
+            System.out.println("TOWER: Helictoper " + this.name + " (#" + this.id + ") deregistered from weather tower.");
+        }
+        else if (this.coordinates.checkHeight() == 1) {
+            this.coordinates.setUpperLimit();
+            System.out.println("Cannot go higher than 100, limiting height.");
+        }
     }
 
     @Override

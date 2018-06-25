@@ -26,4 +26,18 @@ public class Coordinates {
 		this.latitude += latitude;
 		this.height += height;
 	}
+
+	public void setUpperLimit() {
+		this.height = 100;
+	}
+
+	public int checkHeight() {
+		if (this.height < 0) {
+			return (-1);
+		}
+		else if (this.height > 100) {
+			return (1);
+		}
+		return (0);
+	}
 }
