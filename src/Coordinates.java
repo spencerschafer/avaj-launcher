@@ -20,4 +20,10 @@ public class Coordinates {
 	public int getHeight() {
 		return height;
 	}
+
+	public void changeCoordinates(int longitude, int latitude, int height) {
+		this.latitude += longitude;
+		this.latitude += latitude;
+		this.height += height;
+	}
 }

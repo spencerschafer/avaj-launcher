@@ -20,25 +20,22 @@ public class Main {
 		//adding aircraft to array
 		listOfAircraft = createAllAircraft(file);
 
-		//NOTE: register each aircraft to tower
+		//register each aircraft to tower
 		for (Flyable aircraft : listOfAircraft) {
 			aircraft.registerTower(weatherTower);
 		}
 
 
-	/*	//NOTE: iterating through each aircraft updating the conditions on each iteration
-		totalAircraft = listOfAircraft.size();
+		//iterating through each aircraft updating the conditions on each iteration
 		System.out.println("\n-\n");
 		for (int counter = 0; counter < iterations; ++counter) {
-			for (int aircraft = 0; aircraft < totalAircraft; ++aircraft) {
-				listOfAircraft.get(aircraft).updateConditions();
-			}
-			System.out.println("\n-\n");
-		}*/
+				weatherTower.changeWeather();
+			System.out.println("-");
+		}
 
 		/*weatherTower.printArray();
 
-		//NOTE: deregister each aircraft from tower
+		//TODO: deregister each aircraft from tower (assuming that's necessary)
 		for (Flyable aircraft : listOfAircraft) {
 			weatherTower.unregister(aircraft);
 		}
@@ -90,6 +87,8 @@ public class Main {
 			return -1;
 		}
 
+
+		//TODO: Check for negative coordinates
 		//if the integer entered cannot be stored in an int it's considered invalid
 		try {
 			Integer.parseInt(line[2]);

@@ -5,7 +5,10 @@ public class Tower {
 
 	//TODO
 	protected void conditionsChanged() {
-		System.out.println("Conditions have changed");
+		//update each condition of each aircraft per required iteration
+	    for (Flyable aircraft : observers) {
+	    	aircraft.updateConditions();
+		}
 	}
 
 	public void register(Flyable flyable) {
