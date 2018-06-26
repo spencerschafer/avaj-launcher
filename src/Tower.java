@@ -6,8 +6,8 @@ public class Tower {
 	//TODO
 	protected void conditionsChanged() {
 		//update each condition of each aircraft per required iteration
-	    for (Flyable aircraft : observers) {
-	    	aircraft.updateConditions();
+	    for (int i = 0; i < observers.size(); ++i) {
+	    	observers.get(i).updateConditions();
 		}
 	}
 
@@ -20,7 +20,7 @@ public class Tower {
 	}
 
 	//REMOVE THIS FUNCTION - tests if aircraft were registered
-	public void printArray() {
+	public void printStatus() {
 		if (observers.size() == 0) {
 			System.out.println("\nNO AIRCRAFT REGISTERED");
 		}

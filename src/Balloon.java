@@ -9,10 +9,7 @@ public class Balloon extends Aircraft implements Flyable {
     //TODO
     @Override
     public void updateConditions() {
-        //make a call to get the current weather
-        //changed coordinates depending on the current weather
-        //relevant changes to coordinates are at the bottom of this class
-
+        printName();
         String weather = weatherTower.getWeather(this.coordinates);
 
         switch (weather) {
@@ -22,18 +19,22 @@ public class Balloon extends Aircraft implements Flyable {
                 break;
             case "RAIN":
                 coordinates.changeCoordinates(0, 0, -5);
+                System.out.println("Balloon " + this.name + " (#" + this.id + ") weather is RAIN");
                 break;
             case "FOG":
                 coordinates.changeCoordinates(0, 0, -3);
+                System.out.println("Balloon " + this.name + " (#" + this.id + ") weather is FOG");
                 break;
             case "SNOW":
                 coordinates.changeCoordinates(0, 0, -15);
+                System.out.println("Balloon " + this.name + " (#" + this.id + ") weather is SNOW");
                 break;
         }
 
         if (this.coordinates.checkHeight() == -1) {
-            weatherTower.unregister(this);
             System.out.println("TOWER: Balloon " + this.name + " (#" + this.id + ") deregistered from weather tower.");
+            printCoordinates();
+            this.weatherTower.unregister(this);
         }
         else if (this.coordinates.checkHeight() == 1) {
             this.coordinates.setUpperLimit();

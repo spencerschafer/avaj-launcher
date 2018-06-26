@@ -32,7 +32,8 @@ public class Coordinates {
 	}
 
 	public int checkHeight() {
-		if (this.height < 0) {
+		System.out.println("Check Height Called");
+		if (this.height <= 0) {
 			return (-1);
 		}
 		else if (this.height > 100) {

@@ -23,6 +23,10 @@ public class Aircraft {
         return this.id;
     }
 
+    public void printName() {
+        System.out.println("AIRCRAFT NAME: " + this.name);
+    }
+
     public void printCoordinates() {
         System.out.printf("\n(" + this.coordinates.getLongitude() + ")");
         System.out.printf("(" + this.coordinates.getLatitude() + ")");
