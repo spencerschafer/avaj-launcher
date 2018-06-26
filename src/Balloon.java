@@ -6,10 +6,8 @@ public class Balloon extends Aircraft implements Flyable {
         this.coordinates = coordinates;
     }
 
-    //TODO
     @Override
     public void updateConditions() {
-        printName();
         String weather = weatherTower.getWeather(this.coordinates);
 
         switch (weather) {
@@ -35,13 +33,11 @@ public class Balloon extends Aircraft implements Flyable {
             System.out.println("TOWER: Balloon " + this.name + " (#" + this.id + ") deregistered from weather tower.");
             printCoordinates();
             this.weatherTower.unregister(this);
-        }
-        else if (this.coordinates.checkHeight() == 1) {
+        } else if (this.coordinates.checkHeight() == 1) {
             this.coordinates.setUpperLimit();
-            System.out.println("Cannot go higher than 100, limiting height.");
+            System.out.println("Cannot go higher than 100, restricting height.");
         }
     }
-
 
     @Override
     public void registerTower(WeatherTower WeatherTower) {
@@ -51,10 +47,3 @@ public class Balloon extends Aircraft implements Flyable {
     }
 
 }
-
-/*
-◦ SUN - Longitude increases with 2, Height increases with 4
-◦ RAIN - Height decreases with 5
-◦ FOG - Height decreases with 3
-◦ SNOW - Height decreases with 15
- */

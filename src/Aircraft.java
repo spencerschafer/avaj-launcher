@@ -5,12 +5,15 @@ public class Aircraft {
 
     private static long idCounter = 0;
 
+
+    //unused constructor as specific aircraft class sets the values
     Aircraft(String name, Coordinates coordinates) {
         this.name = name;
         this.coordinates = coordinates;
         id = nextId();
     }
 
+    //default constructor
     Aircraft() {
         this.name = "default";
         this.coordinates = new Coordinates(0, 0, 0);
@@ -23,10 +26,7 @@ public class Aircraft {
         return this.id;
     }
 
-    public void printName() {
-        System.out.println("AIRCRAFT NAME: " + this.name);
-    }
-
+    //own function
     public void printCoordinates() {
         System.out.printf("\n(" + this.coordinates.getLongitude() + ")");
         System.out.printf("(" + this.coordinates.getLatitude() + ")");

@@ -6,10 +6,8 @@ public class Helicopter extends Aircraft implements Flyable {
         this.coordinates = coordinates;
     }
 
-    //TODO
     @Override
     public void updateConditions() {
-        printName();
         String weather = weatherTower.getWeather(this.coordinates);
 
         switch (weather) {
@@ -30,14 +28,14 @@ public class Helicopter extends Aircraft implements Flyable {
                 System.out.println("Helicopter " + this.name + " (#" + this.id + ") weather is SNOW");
                 break;
         }
+
         if (this.coordinates.checkHeight() == -1) {
-            System.out.println("TOWER: Helictoper " + this.name + " (#" + this.id + ") deregistered from weather tower.");
+            System.out.println("TOWER: Helicopter " + this.name + " (#" + this.id + ") deregistered from weather tower.");
             printCoordinates();
             this.weatherTower.unregister(this);
-        }
-        else if (this.coordinates.checkHeight() == 1) {
+        } else if (this.coordinates.checkHeight() == 1) {
             this.coordinates.setUpperLimit();
-            System.out.println("Cannot go higher than 100, limiting height.");
+            System.out.println("Cannot go higher than 100, restricting height.");
         }
     }
 
@@ -48,10 +46,3 @@ public class Helicopter extends Aircraft implements Flyable {
         System.out.println("TOWER: Helicopter " + this.name + " (#" + this.id + ") registered to weather tower.");
     }
 }
-
-/*
-◦ SUN - Longitude increases with 10, Height increases with 2
-◦ RAIN - Longitude increases with 5
-◦ FOG - Longitude increases with 1
-◦ SNOW - Height decreases with 12
- */
