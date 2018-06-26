@@ -4,9 +4,10 @@ import java.util.ArrayList;
 //Check positive values for coordinates
 //Create an output message function for weather changes and landing of each class (think random message)
 //Do something with default weatherProvider constructor
-//TODO: Write output to file
+// Write output to file
 //TODO: Incorporate packages
 //TODO: Error when deregistering an aircraft from ArrayList (two aircraft are removed)
+//TODO: Create shell script that allows user to test a specifc file (i.e choose option 1 for scenerio.txt)
 //TODO: Create Custom exceptions for handling errors (BONUS)
 
 public class Main {
@@ -32,10 +33,11 @@ public class Main {
         }
 
         //iterating through each aircraft updating the conditions on each iteration
-        System.out.println("-");
+        System.out.println();
         for (int counter = 0; counter < iterations; ++counter) {
             weatherTower.changeWeather();
-            System.out.println("-");
+            if ((counter + 1) != iterations)
+                System.out.println();
         }
     }
 
@@ -92,7 +94,7 @@ public class Main {
             c = Integer.parseInt(line[4]);
 
             //checking for negative coordinates
-            if (a <= 0  || b <= 0  || c  <= 0) {
+            if (a <= 0 || b <= 0 || c <= 0) {
                 System.out.println("ERROR: Integer value needs to be greater than 0.");
                 System.out.println("FORMAT: 0 < value < 2147483647.");
                 System.out.println("See line [" + lineNumber + "]. ");

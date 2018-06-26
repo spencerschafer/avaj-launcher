@@ -1,5 +1,7 @@
 #!/bin/bash
-cd src
-find . -name \*.java > sources.txt
+find src -name \*.java > sources.txt
 javac -sourcepath . @sources.txt
-java main avaj/scenario.txt
+cd src
+java Main ../resources/tests/valid/scenario.txt
+rm *.class
+rm ../sources.txt
