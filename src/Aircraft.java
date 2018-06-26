@@ -32,4 +32,28 @@ public class Aircraft {
         System.out.printf("(" + this.coordinates.getLatitude() + ")");
         System.out.printf("(" + this.coordinates.getHeight() + ")\n");
     }
+
+    public void sendMessage(String weather) {
+
+        int message = (int) (Math.random() * 3);
+
+        String[] sun = {"This is hot!", "Wow, what a view!", "Just Beautiful."};
+        String[] rain = {"Everything is getting a wash!", "Get your raincoats!", "I'm getting soaked!"};
+        String[] fog = {"I can't see a thing!", "Visibility is low, be careful!", "I can't see my hands!"};
+        String[] snow = {"Keep an eye out for snowballs!", "Good thing I brought extra socks.", "It's freezing!"};
+
+        switch (weather) {
+            case "SUN":
+                System.out.println(sun[message]);
+                break;
+            case "RAIN":
+                System.out.println(rain[message]);
+                break;
+            case "FOG":
+                System.out.println(fog[message]);
+                break;
+            case "SNOW":
+                System.out.println(snow[message]);
+        }
+    }
 }

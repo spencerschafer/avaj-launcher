@@ -1,11 +1,12 @@
 import java.io.*;
 import java.util.ArrayList;
 
-//TODO: Check positive values for coordinates
-//TODO: Create an output message function for weather changes and landing of each class (think random message)
-//TODO: Do something with default weatherProvider constructor
-//TODO: Incorporate packages
+//Check positive values for coordinates
+//Create an output message function for weather changes and landing of each class (think random message)
+//Do something with default weatherProvider constructor
 //TODO: Write output to file
+//TODO: Incorporate packages
+//TODO: Error when deregistering an aircraft from ArrayList (two aircraft are removed)
 //TODO: Create Custom exceptions for handling errors (BONUS)
 
 public class Main {
@@ -31,7 +32,7 @@ public class Main {
         }
 
         //iterating through each aircraft updating the conditions on each iteration
-        System.out.println("\n-\n");
+        System.out.println("-");
         for (int counter = 0; counter < iterations; ++counter) {
             weatherTower.changeWeather();
             System.out.println("-");
@@ -83,18 +84,27 @@ public class Main {
         }
 
 
-        //TODO: Check for negative coordinates
         //if the integer entered cannot be stored in an int it's considered invalid
         try {
-            Integer.parseInt(line[2]);
-            Integer.parseInt(line[3]);
-            Integer.parseInt(line[4]);
+            int a, b, c;
+            a = Integer.parseInt(line[2]);
+            b = Integer.parseInt(line[3]);
+            c = Integer.parseInt(line[4]);
+
+            //checking for negative coordinates
+            if (a <= 0  || b <= 0  || c  <= 0) {
+                System.out.println("ERROR: Integer value needs to be greater than 0.");
+                System.out.println("FORMAT: 0 < value < 2147483647.");
+                System.out.println("See line [" + lineNumber + "]. ");
+                return -1;
+            }
         } catch (NumberFormatException e) {
             System.out.println("ERROR: Integer value is invalid.");
-            System.out.println("FORMAT: -2147483648 < value < 2147483647.");
+            System.out.println("FORMAT: 0 < value < 2147483647.");
             System.out.println("See line [" + lineNumber + "]. ");
             return -1;
         }
+
         return 1;
     }
 

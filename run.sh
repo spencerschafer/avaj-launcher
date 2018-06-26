@@ -1,10 +1,5 @@
 #!/bin/bash
-find . -name src/*.java > sources.txt
+cd src
+find . -name \*.java > sources.txt
 javac -sourcepath . @sources.txt
-#java avaj.weather.Simulator avaj/scenario.txt
-
-
-#different option
-#!/bin/sh
-#javac -d . com/avaj/**/*.java
-#java -cp . com.avaj.simulator.Simulator $@
+java main avaj/scenario.txt
