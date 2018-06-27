@@ -6,6 +6,8 @@ import Aircraft.Flyable;
 import java.io.*;
 import java.util.ArrayList;
 
+import Exceptions.*;
+
 //Check positive values for coordinates
 //Create an output message function for weather changes and landing of each class (think random message)
 //Do something with default weatherProvider constructor
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 //Incorporate packages
 //Create shell script that allows user to test a specific file (i.e choose option 1 for scenario.txt)
 //TODO: Create Custom exceptions for handling errors (BONUS)
+//TODO: Make sure only java 7, and earlier, functions were used
 
 public class Main {
     public static void main(String[] args) {
@@ -50,11 +53,13 @@ public class Main {
         int iterations;
 
         //checking that length is only 1 as we are expecting only 1 integer value on the first line
-        if (line.length != 1) {
-            System.out.println("ERROR: First line of file needs to be an integer.");
-            System.out.println("FORMAT: 25 (Example)");
-            System.out.print("See line [" + lineNumber + "]");
-            return -1;
+        try {
+            if (line.length != 1) {
+                //throw new CustomFirstLineNotIntegerException("ERROR:First line of file needs to be an integer.\nFORMAT: 25 (Example)\nSee :ome [");
+                throw new CustomFirstLineNotIntegerException(lineNumber);
+            }
+        } catch (CustomFirstLineNotIntegerException e) {
+            System.exit(1);
         }
 
         //if the integer entered cannot be stored in an int it's considered invalid
