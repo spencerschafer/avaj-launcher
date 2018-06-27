@@ -5,8 +5,8 @@ import java.util.ArrayList;
 //Create an output message function for weather changes and landing of each class (think random message)
 //Do something with default weatherProvider constructor
 // Write output to file
+//TODO: Error when deregistering an aircraft from ArrayList (two aircraft are removed instead of 1)
 //TODO: Incorporate packages
-//TODO: Error when deregistering an aircraft from ArrayList (two aircraft are removed)
 //TODO: Create shell script that allows user to test a specifc file (i.e choose option 1 for scenerio.txt)
 //TODO: Create Custom exceptions for handling errors (BONUS)
 
@@ -20,8 +20,8 @@ public class Main {
 
         //checking for valid file
         if ((iterations = isFileValid(file)) == -1) {
-            System.exit(1);
             //no error message is needed as it is printed by isFileValid
+            System.exit(1);
         }
 
         //adding aircraft to array

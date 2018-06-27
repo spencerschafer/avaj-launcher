@@ -26,7 +26,7 @@ public class Aircraft {
         return this.id;
     }
 
-    //own function
+    //own function for debugging
     public void printCoordinates() {
         System.out.printf("\n(" + this.coordinates.getLongitude() + ")");
         System.out.printf("(" + this.coordinates.getLatitude() + ")");
