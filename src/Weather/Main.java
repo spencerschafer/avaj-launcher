@@ -12,7 +12,7 @@ import java.util.ArrayList;
 //Write output to file
 //Error when deregistering an aircraft from ArrayList (two aircraft are removed instead of 1)
 //Incorporate packages
-//TODO: Create shell script that allows user to test a specifc file (i.e choose option 1 for scenerio.txt)
+//Create shell script that allows user to test a specific file (i.e choose option 1 for scenario.txt)
 //TODO: Create Custom exceptions for handling errors (BONUS)
 
 public class Main {
@@ -60,9 +60,13 @@ public class Main {
         //if the integer entered cannot be stored in an int it's considered invalid
         try {
             iterations = Integer.parseInt(line[0]);
+            if (iterations == 0) {
+                System.out.println("Valid file but there are no iterations.");
+                return -1;
+            }
         } catch (NumberFormatException e) {
             System.out.println("ERROR: Integer value is invalid.");
-            System.out.println("FORMAT: -2147483648 < value < 2147483647.");
+            System.out.println("FORMAT: 0 < value < 2147483647.");
             System.out.println("See line [" + lineNumber + "]. ");
             return -1;
         }
@@ -133,10 +137,8 @@ public class Main {
             if ((line = br.readLine()) != null) {
                 string = line.split(" ");
                 iterations = isFirstLineValid(string, lineNumber);
-                if (!(iterations > 0)) {
-                    System.out.println("Valid file but there are no iterations. Exiting.");
+                if (iterations < 0)
                     return -1;
-                }
                 lineNumber++;
             }
 

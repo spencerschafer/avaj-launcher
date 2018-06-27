@@ -1,0 +1,104 @@
+#!/bin/bash
+
+declare -a VALID=( "scenario.txt" "scenario_2.txt"  "valid_no_iterations.txt" )
+declare -a INVALID=( "empty_file.txt" "invalid_firstline.txt" "invalid_integer_values.txt"
+					"invalid_line_format.txt" "invalid_type.txt" "negative_coordinate.txt" "no_aircraft_entered.txt" )
+
+function compileValid
+{	
+	java Weather.Main ../resources/tests/valid/$1 | less
+}
+
+function compileInvalid
+{
+	java Weather.Main ../resources/tests/invalid/$1 | less
+}
+
+function valid
+{
+	option=-1
+	until [ "$option" = "0" ]; do
+		echo ""
+		echo "Please select a VALID file to test:"
+		echo ""
+		echo "0) MAIN MENU"
+		echo ""
+		echo "1) scenario"
+		echo "2) scenario_2"
+		echo "3) valid_no_iterations"
+		echo ""
+
+		echo -n "Enter choice: "
+		read option
+		echo ""
+		case $option in
+			0 ) main_menu; press_enter ;;
+			1 ) compileValid ${VALID[0]};;
+			2 ) compileValid ${VALID[1]};;
+			3 ) compileValid ${VALID[2]};;
+			* ) echo "That option is not available." ;
+		esac
+	done
+}
+
+function invalid
+{
+	option=-1
+	until [ "$option" = "0" ]; do
+		echo ""
+		echo "Please select an INVALID file to test:"
+		echo ""
+		echo "0) MAIN MENU"
+		echo ""
+		echo "1) empty_file"
+		echo "2) invalid_firstline"
+		echo "3) invalid_integer_values"
+		echo "4) invalid_line_format"
+		echo "5) invalid_type"
+		echo "6) negative_coordinates"
+		echo "7) no_aircraft_entered"
+		echo ""
+
+		echo -n "Enter choice: "
+		read option
+		echo ""
+		case $option in
+			0 ) main_menu; press_enter ;;
+			1 ) compileInvalid ${INVALID[0]};;
+			2 ) compileInvalid ${INVALID[1]};;
+			3 ) compileInvalid ${INVALID[2]};;
+			4 ) compileInvalid ${INVALID[3]};;
+			5 ) compileInvalid ${INVALID[4]};;
+			6 ) compileInvalid ${INVALID[5]};;
+			7 ) compileInvalid ${INVALID[6]};;
+			* ) echo "That option is not available." ;
+		esac
+	done
+}
+
+function main_menu 
+{
+	option=-1
+	until [ "$option" = "3" ]; do
+		echo "Test VALID or INVALID input files?"
+		echo ""
+		echo "1) Valid"
+		echo "2) Invalid"
+		echo "3) Exit"
+		echo ""
+
+		echo -n "Enter choice: "
+		read option
+		case $option in
+			1 ) valid; press_enter ;;
+			2 ) invalid; press_enter ;;
+			3 ) rm **/*.class; rm ../sources.txt; exit ;;
+			* ) echo "Invalid Choice.";
+		esac
+	done
+}
+
+find src -name \*.java > sources.txt
+javac -sourcepath . @sources.txt
+cd src
+main_menu
