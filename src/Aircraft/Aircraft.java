@@ -1,3 +1,5 @@
+package Aircraft;
+
 public class Aircraft {
     protected String name;
     protected Coordinates coordinates;

@@ -1,3 +1,7 @@
+package Weather;
+
+import Aircraft.Coordinates;
+
 public class WeatherProvider {
 	private static WeatherProvider weatherProvider = new WeatherProvider();
 	private static String weather[] = {"SUN", "RAIN", "FOG", "SNOW"};
@@ -6,7 +10,7 @@ public class WeatherProvider {
 	    //pointless
 	}
 
-	//just return weatherProvider to be used by WeatherTower
+	//just return weatherProvider to be used by Weather.WeatherTower
 	public static WeatherProvider getProvider() {
 		return (weatherProvider);
 	}

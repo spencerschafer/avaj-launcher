@@ -1,12 +1,17 @@
+package Weather;
+
+import Aircraft.AircraftFactory;
+import Aircraft.Flyable;
+
 import java.io.*;
 import java.util.ArrayList;
 
 //Check positive values for coordinates
 //Create an output message function for weather changes and landing of each class (think random message)
 //Do something with default weatherProvider constructor
-// Write output to file
-//TODO: Error when deregistering an aircraft from ArrayList (two aircraft are removed instead of 1)
-//TODO: Incorporate packages
+//Write output to file
+//Error when deregistering an aircraft from ArrayList (two aircraft are removed instead of 1)
+//Incorporate packages
 //TODO: Create shell script that allows user to test a specifc file (i.e choose option 1 for scenerio.txt)
 //TODO: Create Custom exceptions for handling errors (BONUS)
 
@@ -85,7 +90,6 @@ public class Main {
             return -1;
         }
 
-
         //if the integer entered cannot be stored in an int it's considered invalid
         try {
             int a, b, c;
@@ -146,7 +150,7 @@ public class Main {
             }
 
         } catch (IOException e) {
-            System.out.println("ERROR: IOException in function isFileValid() in class Main.java]\n");
+            System.out.println("ERROR: IOException in function isFileValid() in class Weather.Main.java]\n");
             return -1;
         }
 
@@ -186,7 +190,7 @@ public class Main {
                 listOfAircraft.add(createAircraft(string));
             }
         } catch (IOException e) {
-            System.out.println("ERROR: IOException in function isFileValid() in class Main.java]\n");
+            System.out.println("ERROR: IOException in function isFileValid() in class Weather.Main.java]\n");
             System.exit(2);
         }
         return listOfAircraft;

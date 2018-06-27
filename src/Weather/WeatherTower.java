@@ -1,3 +1,7 @@
+package Weather;
+
+import Aircraft.Coordinates;
+
 public class WeatherTower extends Tower {
 
     //calls weatherProvider to return weather condition
