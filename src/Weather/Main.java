@@ -15,8 +15,9 @@ import Exceptions.*;
 //Error when deregistering an aircraft from ArrayList (two aircraft are removed instead of 1)
 //Incorporate packages
 //Create shell script that allows user to test a specific file (i.e choose option 1 for scenario.txt)
-//TODO: Create Custom exceptions for handling errors (BONUS)
+// Create Custom exceptions for handling errors (BONUS)
 //TODO: Make sure only java 7, and earlier, functions were used
+//TODO: Error check, review code where 'system.exit()' replaced 'return -1'
 
 public class Main {
     public static void main(String[] args) {
@@ -50,12 +51,12 @@ public class Main {
     }
 
     private static int isFirstLineValid(String[] line, int lineNumber) {
-        int iterations;
+        //TODO: uninitialize
+        int iterations = 0;
 
         //checking that length is only 1 as we are expecting only 1 integer value on the first line
         try {
             if (line.length != 1) {
-                //throw new CustomFirstLineNotIntegerException("ERROR:First line of file needs to be an integer.\nFORMAT: 25 (Example)\nSee :ome [");
                 throw new CustomFirstLineNotIntegerException(lineNumber);
             }
         } catch (CustomFirstLineNotIntegerException e) {
@@ -65,15 +66,18 @@ public class Main {
         //if the integer entered cannot be stored in an int it's considered invalid
         try {
             iterations = Integer.parseInt(line[0]);
-            if (iterations == 0) {
-                System.out.println("Valid file but there are no iterations.");
-                return -1;
+            try {
+                if (iterations == 0) {
+                    throw new CustomNoIterationsException();
+                }
+            } catch (CustomNoIterationsException e) {
+                System.exit(2);
             }
         } catch (NumberFormatException e) {
             System.out.println("ERROR: Integer value is invalid.");
             System.out.println("FORMAT: 0 < value < 2147483647.");
             System.out.println("See line [" + lineNumber + "]. ");
-            return -1;
+            System.exit(3);
         }
         return iterations;
     }
@@ -82,21 +86,23 @@ public class Main {
         String type;
 
         //check array size, if size != 5 return error
-        if (line.length != 5) {
-            System.out.println("ERROR: Incorrect format.");
-            System.out.println("FORMAT: [TYPE] [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]");
-            System.out.println("See Line [" + lineNumber + "].");
-            return -1;
+        try {
+            if (line.length != 5) {
+                throw new CustomIncorrectFormatException(lineNumber);
+            }
+        } catch (CustomIncorrectFormatException e) {
+            System.exit(4);
         }
 
         //checking correct type
         type = line[0].toLowerCase();
-        if (!(type.equalsIgnoreCase("balloon")) && !(type.equalsIgnoreCase("jetplane")) &&
-                !(type.equalsIgnoreCase("helicopter"))) {
-            System.out.println("ERROR: [" + line[0] + "]" + " is not a valid type of aircraft. ");
-            System.out.println("TYPES: Balloon, JetPlane or Helicopter.");
-            System.out.println("See line [" + lineNumber + "]. ");
-            return -1;
+        try {
+            if (!(type.equalsIgnoreCase("balloon")) && !(type.equalsIgnoreCase("jetplane")) &&
+                    !(type.equalsIgnoreCase("helicopter"))) {
+                throw new CustomInvalidAircraftException(line[0], lineNumber);
+            }
+        } catch (CustomInvalidAircraftException e) {
+            System.exit(5);
         }
 
         //if the integer entered cannot be stored in an int it's considered invalid
@@ -107,17 +113,18 @@ public class Main {
             c = Integer.parseInt(line[4]);
 
             //checking for negative coordinates
-            if (a <= 0 || b <= 0 || c <= 0) {
-                System.out.println("ERROR: Integer value needs to be greater than 0.");
-                System.out.println("FORMAT: 0 < value < 2147483647.");
-                System.out.println("See line [" + lineNumber + "]. ");
-                return -1;
+            try {
+                if (a <= 0 || b <= 0 || c <= 0) {
+                    throw new CustomNumberFormatException(lineNumber);
+                }
+            } catch (CustomNumberFormatException e) {
+               System.exit(6);
             }
         } catch (NumberFormatException e) {
             System.out.println("ERROR: Integer value is invalid.");
             System.out.println("FORMAT: 0 < value < 2147483647.");
             System.out.println("See line [" + lineNumber + "]. ");
-            return -1;
+            System.exit(7);
         }
 
         return 1;
@@ -129,9 +136,12 @@ public class Main {
         int lineNumber = 1;
 
         //checking for empty file
-        if (file.length() == 0) {
-            System.out.println("ERROR: Empty file.");
-            return -1;
+        try {
+            if (file.length() == 0) {
+                throw new CustomEmptyFileException();
+            }
+        } catch (CustomEmptyFileException e) {
+            System.exit(8);
         }
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
@@ -158,15 +168,16 @@ public class Main {
 
         } catch (IOException e) {
             System.out.println("ERROR: IOException in function isFileValid() in class Weather.Main.java]\n");
-            return -1;
+            System.exit(9);
         }
 
         //if correct integer was entered on first line, but no following lines were entered
-        if (lineNumber == 2) {
-            System.out.println("ERROR: No aircraft entered.");
-            System.out.println("FORMAT: [TYPE] [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]");
-            System.out.println("See line [" + lineNumber + "]. ");
-            return -1;
+        try {
+            if (lineNumber == 2) {
+                throw new CustomInvalidAircraftException(lineNumber);
+            }
+        } catch (CustomInvalidAircraftException e) {
+            System.exit(10);
         }
         return iterations;
     }
