@@ -8,17 +8,6 @@ import java.util.ArrayList;
 
 import Exceptions.*;
 
-//Check positive values for coordinates
-//Create an output message function for weather changes and landing of each class (think random message)
-//Do something with default weatherProvider constructor
-//Write output to file
-//Error when deregistering an aircraft from ArrayList (two aircraft are removed instead of 1)
-//Incorporate packages
-//Create shell script that allows user to test a specific file (i.e choose option 1 for scenario.txt)
-//Create Custom exceptions for handling errors (BONUS)
-//Make sure only java 7, and earlier, functions were used
-//TODO: Error check, review code where 'system.exit()' replaced 'return -1'
-
 public class Main {
     public static void main(String[] args) {
 
@@ -51,7 +40,6 @@ public class Main {
     }
 
     private static int isFirstLineValid(String[] line, int lineNumber) {
-        //TODO: uninitialize
         int iterations = 0;
 
         //checking that length is only 1 as we are expecting only 1 integer value on the first line
@@ -118,7 +106,7 @@ public class Main {
                     throw new CustomNumberFormatException(lineNumber);
                 }
             } catch (CustomNumberFormatException e) {
-               System.exit(6);
+                System.exit(6);
             }
         } catch (NumberFormatException e) {
             System.out.println("ERROR: Integer value is invalid.");
