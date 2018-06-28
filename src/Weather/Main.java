@@ -15,8 +15,8 @@ import Exceptions.*;
 //Error when deregistering an aircraft from ArrayList (two aircraft are removed instead of 1)
 //Incorporate packages
 //Create shell script that allows user to test a specific file (i.e choose option 1 for scenario.txt)
-// Create Custom exceptions for handling errors (BONUS)
-//TODO: Make sure only java 7, and earlier, functions were used
+//Create Custom exceptions for handling errors (BONUS)
+//Make sure only java 7, and earlier, functions were used
 //TODO: Error check, review code where 'system.exit()' replaced 'return -1'
 
 public class Main {
@@ -30,7 +30,7 @@ public class Main {
         //checking for valid file
         if ((iterations = isFileValid(file)) == -1) {
             //no error message is needed as it is printed by isFileValid
-            System.exit(1);
+            System.exit(0);
         }
 
         //adding aircraft to array
@@ -67,7 +67,7 @@ public class Main {
         try {
             iterations = Integer.parseInt(line[0]);
             try {
-                if (iterations == 0) {
+                if (iterations <= 0) {
                     throw new CustomNoIterationsException();
                 }
             } catch (CustomNoIterationsException e) {
@@ -126,7 +126,6 @@ public class Main {
             System.out.println("See line [" + lineNumber + "]. ");
             System.exit(7);
         }
-
         return 1;
     }
 

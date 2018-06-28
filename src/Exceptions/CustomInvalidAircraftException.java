@@ -3,7 +3,7 @@ package Exceptions;
 public class CustomInvalidAircraftException extends Exception {
 
     public CustomInvalidAircraftException(int lineNumber) {
-        System.out.println("ERROR: No aircraft entered.");
+        System.out.println("ERROR:  No aircraft entered.");
         System.out.println("FORMAT: [TYPE] [NAME] [LONGITUDE] [LATITUDE] [HEIGHT]");
         System.out.println("See line [" + lineNumber + "]. ");
     }
